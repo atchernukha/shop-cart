@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Button, FormHelperText, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Button, FormHelperText, TextField, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from '../utils/const';
@@ -12,9 +13,6 @@ const useStyles = makeStyles(theme => ({
         padding: 4,
         marginTop: 30,
     },
-    formAction: {
-        marginTop: 3,
-    }
 }))
 const Auth = () => {
     const classes = useStyles()
@@ -36,7 +34,7 @@ const Auth = () => {
 
 
     return (
-        <form className={classes.form}>
+        <form className={classes.form} >
             {/* <FormLabel>{isLogin ? 'Login' : 'Registration'}</FormLabel> */}
             <Typography>{isLogin ? 'Login' : 'Registration'}</Typography>
             <TextField
@@ -47,6 +45,7 @@ const Auth = () => {
                 name="email"
                 type="email"
                 value={form.email}
+                sx={{mt: 3}}
                 fullWidth
                 onChange={handleChange}
             />
@@ -57,6 +56,7 @@ const Auth = () => {
                 name="password"
                 type="password"
                 value={form.password}
+                sx={{mt: 3}}
                 fullWidth
                 onChange={handleChange}
             />
@@ -66,6 +66,7 @@ const Auth = () => {
                     id="pass1"
                     label="Confirm Password"
                     type="password"
+                    sx={{mt: 3}}
                     fullWidth
                     onChange={handleChange}
                 />
