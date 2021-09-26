@@ -1,9 +1,14 @@
+import { Grid } from '@material-ui/core'
 import React from 'react'
 
 export default function Shop() {
     return (
-        <div>
+        <Grid container spacing={2}
+        sx={{mt: '1rem'}}
+        >
+            <Grid item xs={8}>
             Shop page
-        </div>
+            </Grid>
+        </Grid>
     )
 }
