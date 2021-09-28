@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, FormHelperText, TextField, Typography } from '@material-ui/core';
+import { Button, FormHelperText, TextField, Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { AuthActionCreators } from '../store/redusers/auth/actionCreators';
 
 const useStyles = makeStyles(theme => ({
     form: {
-        maxWidth: theme.spacing(56),
+        maxWidth: theme.spacing(48),
         margin: '0 auto',
         padding: 4,
         marginTop: 30,
@@ -39,7 +39,6 @@ const Auth = () => {
             <Typography>{isLogin ? 'Login' : 'Registration'}</Typography>
             <TextField
                 autoFocus
-                margin="dence"
                 id="name"
                 label="Email Address"
                 name="email"
@@ -50,7 +49,6 @@ const Auth = () => {
                 onChange={handleChange}
             />
             <TextField
-                margin="dence"
                 id="pass"
                 label="Password"
                 name="password"
@@ -62,7 +60,6 @@ const Auth = () => {
             />
             {!isLogin &&
                 <TextField
-                    margin="dence"
                     id="pass1"
                     label="Confirm Password"
                     type="password"
@@ -78,8 +75,11 @@ const Auth = () => {
             <NavLink to={isLogin ? REGISTRATION_ROUTE : LOGIN_ROUTE} variant="body2">
                         {isLogin ? "Sign Up" : "Login"}
             </NavLink>
+            <Box component="span" sx={{ m: 2, }}>
             <Button variant="outlined" onClick={()=>history.goBack()} color="primary">Cancel</Button>
+            </Box>
             <Button color="primary" variant="contained" onClick={handleSubmit} >{isLogin ? 'Login' : 'Register'}</Button>
+
             </FormHelperText>
             {/* </Typography> */}
         </form>
