@@ -24,7 +24,7 @@ const Auth = () => {
     const {isAuth,error} = useSelector(state => state.auth)
     const handleSubmit = () => {
         dispatch(isLogin ? AuthActionCreators.login(form.email, form.password):AuthActionCreators.registration(form.email, form.password))
-        console.log("localStorage: ",JSON.parse(localStorage.getItem('user')))
+        // console.log("localStorage: ",JSON.parse(localStorage.getItem('user')))
         console.log('State: ',isAuth,error)
         history.push(SHOP_ROUTE)
     }

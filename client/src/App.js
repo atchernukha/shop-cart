@@ -1,19 +1,32 @@
-import { useState } from 'react';
+import { Container } from '@material-ui/core';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AppRouter from './components/AppRouter';
 import Header from './components/Header';
-import Basket from './pages/Basket';
+import { AuthActionCreators } from './store/redusers/auth/actionCreators';
 
 
 function App() {
-  const [isCartOpen,setCartOpen] = useState(false)
+      // const {isAuth} = useSelector(state => state.auth)
+    const isAuth = true
+    console.log("App: isAuth = ", isAuth)
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(AuthActionCreators.check).then(data => {
+      dispatch(AuthActionCreators.setUser(data))
+      dispatch(AuthActionCreators.setAuth(true))
+    })
+  }, [])
   return (
     <>
-      <Header handleCart={()=>setCartOpen(true)}/>
-      <AppRouter />
-      <Basket
-        cartOpen={isCartOpen}
-        closeCart={()=>setCartOpen(false)}
-      />
+      <Header handleCart={() => {}} />
+      <Container sx={{
+          mt: '1rem'
+          }}>
+      <AppRouter isAuth={isAuth} />
+      </Container>
+
     </>
   );
 }

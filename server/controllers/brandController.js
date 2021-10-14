@@ -14,7 +14,16 @@ class  BrandController {
     }
 
     async delete (req, res) {
-        
+        const {id} = req.body
+        try{
+            await Brand.destroy({where:{id: id}})
+            res.status(200).json({message:"Deleted successfully"});
+           }
+           catch(e){
+            res.status(404).json({message:"brand not found"})
+            // console.log(e)
+             // handle error better
+           }
     }
 }
 
