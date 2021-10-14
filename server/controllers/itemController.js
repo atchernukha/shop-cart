@@ -60,11 +60,20 @@ class  ItemController {
             }
         )
         return res.json(item)
-        console.log(item)        
+        // console.log(item)        
     }
 
     async delete (req, res) {
-        
+        const {id} = req.body
+        try{
+            await Item.destroy({where:{id: id}})
+            res.status(200).json({message:"Deleted successfully"});
+           }
+           catch(e){
+            res.status(404).json({message:"item not found"})
+            // console.log(e)
+             // handle error better
+           }
     }
 }
 

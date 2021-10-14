@@ -46,6 +46,17 @@ class UserController {
         const token = generateJwt(req.user.id, req.user.email, req.user.role)
         return res.json({token})
     }
+
+    async delete (req, res) {
+        const {id} = req.body
+        try{
+            await User.destroy({where:{id: id}})
+            res.status(200).json({message:"Deleted successfully"});
+           }
+           catch(e){
+            res.status(404).json({message:"user not found"})
+           }
+    }
 }
 
 module.exports = new UserController()
